@@ -2,9 +2,13 @@ import React, {setState, useEffect} from 'react';
 
 const SearchBar = () => {
     return (
-        <div>
-            <input/>
-        </div>
+        <form className="ui form">
+            <div className="field">
+                <label>Search Bar</label>
+                <input/>
+            </div>
+        </form>
+
     )
 }
 

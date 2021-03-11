@@ -3,7 +3,7 @@ import SearchBar from './components/SearchBar';
 
 function App() {
   return (
-    <div className="App">
+    <div className="ui container">
       <SearchBar />
     </div>
   );
