@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const SearchBar = () => {
     
-    const [searchTerm, setTerm] = useState(''); 
+    const [searchTerm, setTerm] = useState('programming'); 
+    const [data, setData] = useState([]);
 
     function onInputChange(e){
         setTerm(e.target.value);
@@ -11,7 +12,7 @@ const SearchBar = () => {
 
     useEffect(()=>{
         const search = async ()=>{
-            await axios.get('https://en.wikipedia.org/w/api.php',{
+            const response = await axios.get('https://en.wikipedia.org/w/api.php',{
                 params: {
                     action: 'query',
                     list : 'search',
@@ -20,6 +21,7 @@ const SearchBar = () => {
                     srsearch: searchTerm
                 }
             }); 
+            setData(response.data.query.search);
         };
         search();
     }, [searchTerm]);
