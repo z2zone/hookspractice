@@ -9,6 +9,24 @@ const SearchBar = () => {
     function onInputChange(e){
         setTerm(e.target.value);
     }
+    const renderData = data.map((item)=>{
+        return (
+            <div className="item" key={item.pageid}>
+                <div className="content">
+                    <div className="header">
+                        {item.title}
+                    </div>
+                </div>
+                {item.snippet}
+                <div className="right floated content">
+                    <a 
+                        className="ui button"
+                        href={`https://en.wikipedia.org?curid=${item.pageid}`}   
+                    >Go</a>
+                </div>
+            </div>
+        );
+    });
 
     useEffect(()=>{
         const search = async ()=>{
@@ -23,7 +41,9 @@ const SearchBar = () => {
             }); 
             setData(response.data.query.search);
         };
-        search();
+        if(searchTerm){
+            search();
+        }
     }, [searchTerm]);
 
     return (
@@ -35,6 +55,9 @@ const SearchBar = () => {
                     onChange = {onInputChange}
                     className="input"
                 />
+            </div>
+            <div className="ui celled list">
+                {renderData}
             </div>
         </form>
     )
